@@ -5,19 +5,18 @@
 // print the total price.
 
 void main() {
-  product paper = product(productName: 'paper');
+  Product paper = Product(productName: 'paper');
   paper.updateQuantity(quantity: 50);
   paper.totalQuantityPrice(priceOfOnePiece: 2);
 }
 
-class product {
+class Product {
   String? name;
   double price = 0;
   int quantity = 0;
 
-  product({required String productName}) {
-    this.name = productName;
-  }
+  Product({required this.name});
+  
 
   int updateQuantity({required int quantity}) {
     return this.quantity = quantity;
