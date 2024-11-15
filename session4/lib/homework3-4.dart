@@ -1,35 +1,33 @@
 //----- 4. Weather Report:  --------- can't solve it
 // Use Map and List to create a program that stores weather data for different cities (temperature,
 // humidity, etc.). Write a function that can retrieve and print weather details using a city name.
-import 'dart:io';
 
-var weatherReport = Map<String, String>();
+import 'dart:convert';
+
 void main() {
-  weatherStoredDate();
-  print('Enter a city name to show details:');
-  String cityName = stdin.readLineSync()!;
-  weatherDetails(cityName);
+  List<City> cityData = [
+    City(cityName: 'france', humidity: 10, temperature: 15),
+    City(cityName: 'egypt', humidity: 15, temperature: 25),
+    City(cityName: 'italy', humidity: 5, temperature: 10)
+  ];
+
+  CityWeatherData('france', cityData);
 }
 
-weatherStoredDate() {
-  print('Enter a city name');
-  String city = stdin.readLineSync()!;
-  print('Enter a city temperature');
-  String temperature = stdin.readLineSync()!;
-  print('Enter a city humidity');
-  String humidity = stdin.readLineSync()!;
+class City {
+  String? cityName;
+  double? temperature;
+  double? humidity;
 
-  weatherReport['cityName'] = city;
-  weatherReport['cityTempreture'] = temperature;
-  weatherReport['humidity'] = humidity;
-
-  var weatherList = weatherReport.entries.map((entry) {
-    return entry;
-  }).toList();
-  print(weatherList);
-  return weatherList;
+  City({this.cityName, this.humidity, this.temperature});
 }
 
-void weatherDetails(String cityName) {
-  print(weatherReport[cityName]);
+void CityWeatherData(String name, List<City> cityData) {
+  for (int i = 0; i < cityData.length; i++) {
+    if (cityData[i].cityName == name) {
+      print('Temperature of $name: ${cityData[i].temperature} C');
+      print('humidity of $name: ${cityData[i].humidity} %');
+      break;
+    }
+  }
 }
